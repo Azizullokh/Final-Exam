@@ -6,8 +6,8 @@ import { FiDownload } from "react-icons/fi";
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { GoDownload } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
-import { toggleLike } from "../reduxStore/LikedSlice";
 import { addImage } from "../reduxStore/downloadSlice";
+import { addLike } from "../reduxStore/LikedSlice";
 
 const UnsplashImgs = () => {
   const [images, setImages] = useState([]);
@@ -52,7 +52,7 @@ const UnsplashImgs = () => {
   }, 500);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 bg-gray-100 dark:bg-gray-900">
+    <div className="max-w-6xl mx-auto pb-10 px-4 bg-gray-100 dark:bg-gray-900">
       <div className="mb-6 flex justify-end items-end">
         <div className="relative md:w-[45%] w-[100%]">
           <input
@@ -103,15 +103,15 @@ const UnsplashImgs = () => {
                 </div>
                 <div className="absolute top-3 right-3 flex gap-2 justify-between">
                   <button
-                    className={`md:text-2xl text-xl ${
+                    className={`text-white md:text-2xl text-xl border-2 border-transparent hover:border-white p-1 rounded transition duration-300 ${
                       isLiked ? "text-red-500" : "text-white"
                     }`}
-                    onClick={() => dispatch(toggleLike(image))}
+                    onClick={() => dispatch(addLike(image))}
                   >
                     {isLiked ? <FaHeart /> : <FaRegHeart />}
                   </button>
                   <button
-                    className={`text-white md:text-2xl text-xl ${
+                    className={`text-white md:text-2xl text-xl border-2 border-transparent hover:border-white p-1 rounded transition duration-300 ${
                       isDownloaded ? "text-blue-500" : ""
                     }`}
                     onClick={() => dispatch(addImage(image))}
