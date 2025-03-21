@@ -37,7 +37,7 @@ const Login = () => {
 
     const handleResetPassword = async () => {
       if (!email) {
-          toast.error("❌ Iltimos, email kiriting!", {
+          toast.error("❌ Please Enter Email!", {
               style: {
                   border: "1px solid #FF0000",
                   padding: "10px",
