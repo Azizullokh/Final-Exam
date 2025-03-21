@@ -39,12 +39,6 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center space-x-6 text-black dark:text-white">
           <DarkModeMenu />
-          <Link to="/" className="hover:text-blue-600">
-            Home
-          </Link>
-          <Link to="/about" className="hover:text-blue-600">
-            About
-          </Link>
           <Link to="/liked" className="relative">
             <FaHeart className="text-2xl" />
             {likedCount > 0 && (
@@ -55,11 +49,16 @@ const Navbar = () => {
           </Link>
           <Link to="/downloaded" className="hover:text-blue-600">
             <TiDownload className="text-2xl" />
+          </Link>{" "}
+          <Link to="/" className="hover:text-blue-600">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-blue-600">
+            About
           </Link>
           <Link to="/contact" className="hover:text-blue-600">
             Contact
           </Link>
-
           {user ? (
             <Link to="/profile">
               <div className="flex items-center gap-3">
