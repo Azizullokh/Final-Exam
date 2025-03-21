@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/liked" className="relative">
             <FaHeart className="text-2xl" />
             {likedCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+              <span className="absolute -top-2 -right-3 bg-red-500 text-white text-[10px] rounded-full p-1">
                 {likedCount}
               </span>
             )}
@@ -53,7 +53,7 @@ const Navbar = () => {
           <Link to="/downloaded" className="relative">
             <TiDownload className="text-2xl" />
             {downloadedImagesCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] rounded-full p-1">
                 {downloadedImagesCount}
               </span>
             )}
@@ -110,7 +110,11 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center text-black gap-6 dark:text-white">
-          <Link to="/liked" className="relative">
+          <Link
+            to="/liked"
+            className="relative"
+            onClick={() => setMenuOpen(false)}
+          >
             <FaHeart className="text-2xl" />
             {likedCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
@@ -120,12 +124,16 @@ const Navbar = () => {
           </Link>
           <Link
             to="/downloaded"
-            className="text-gray-700 text-2xl dark:text-white hover:text-blue-600"
+            className="relative"
             onClick={() => setMenuOpen(false)}
           >
-            <TiDownload />
+            <TiDownload className="text-2xl" />
+            {downloadedImagesCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                {downloadedImagesCount}
+              </span>
+            )}
           </Link>
-
           <div className="md:hidden flex">
             <button
               onClick={toggleMenu}
@@ -176,11 +184,11 @@ const Navbar = () => {
                     {user?.displayName || "User"}
                   </span>
                 </div>
-                <div className="md:hidden flex">
-                  <DarkModeMenu />
-                </div>
               </div>
             )}
+            <div className="md:hidden flex text-black dark:text-white">
+              <DarkModeMenu />
+            </div>
             <Link
               to="/"
               className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2"
