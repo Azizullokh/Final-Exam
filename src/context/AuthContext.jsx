@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [profileImage, setProfileImage] = useState(localStorage.getItem("profileImage") || "default-avatar.png");
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -24,9 +25,10 @@ export const AuthProvider = ({ children }) => {
       }
       setLoading(false);
     });
-  
     return () => unsubscribe();
   }, []);
+
+
   
   const loginUser = async (email, password) => {
     try {
@@ -40,6 +42,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
+
   const resetPassword = async (email) => {
     try {
       await sendPasswordResetEmail(auth, email);
@@ -51,6 +56,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
+
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
@@ -61,6 +69,9 @@ export const AuthProvider = ({ children }) => {
       alert("Google bilan kirishda xatolik: " + error.message);
     }
   };
+
+
+
 
   const updateUserProfile = async (newDisplayName, newPhotoURL) => {
     try {
@@ -83,6 +94,9 @@ export const AuthProvider = ({ children }) => {
       console.error("Profilni yangilashda xato:", error.message);
     }
   };
+
+
+  
 
   const logoutUser = async () => {
     await signOut(auth);
