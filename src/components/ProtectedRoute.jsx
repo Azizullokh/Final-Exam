@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
       <span className="loading loading-ring loading-2xl text-4xl"></span>
     </div>
   }
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  return user ? <Outlet /> : <Navigate to="/register" />;
   
 };
 
