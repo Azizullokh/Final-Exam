@@ -49,7 +49,7 @@ const UnsplashImgs = () => {
   }, 500);
 
   return (
-    <div className="max-w-6xl mx-auto md:px-4 px-0 bg-gray-100 dark:bg-gray-900">
+    <div className="max-w-6xl mx-auto px-4 bg-gray-100 dark:bg-gray-900">
       <div className="mb-6 flex justify-end items-end">
         <div className="relative md:w-[45%] w-[100%]">
           <input
