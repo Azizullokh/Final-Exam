@@ -1,7 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const loadLikesFromStorage = () => {
-  const storedLikes = localStorage.getItem("likedImages");
-  return storedLikes ? JSON.parse(storedLikes) : [];
+  try {
+    const storedLikes = localStorage.getItem("likedImages");
+    return storedLikes ? JSON.parse(storedLikes) : [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+const saveLikesToStorage = (likedImages) => {
+  try {
+    localStorage.setItem("likedImages", JSON.stringify(likedImages));
+  } catch (error) {
+    console.error("Error saving liked images to localStorage:", error);
+  }
 };
 
 const likeSlice = createSlice({
@@ -19,7 +32,7 @@ const likeSlice = createSlice({
       } else {
         state.likedImages.splice(index, 1);
       }
-      localStorage.setItem("likedImages", JSON.stringify(state.likedImages));
+      saveLikesToStorage(state.likedImages);
     },
   },
 });
