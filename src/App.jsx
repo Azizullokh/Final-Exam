@@ -6,7 +6,7 @@ import AuthLayout from "./MainLayout/AuthLayout"
 import { useEffect, useState } from "react";
 //pagelarim-----------------------------------------
 import Login from "./pages/login";
-import Register from "./pages/Register";
+import Register from "./pages/register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Liked from './pages/Liked'
