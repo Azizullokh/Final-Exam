@@ -18,6 +18,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [imageError, setImageError] = useState(false);
   const likedCount = useSelector((state) => state.likes.likedImages.length);
+  const downloadedImagesCount = useSelector(
+    (state) => state.download.images.length
+  );
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -47,8 +50,13 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <Link to="/downloaded" className="hover:text-blue-600">
+          <Link to="/downloaded" className="relative">
             <TiDownload className="text-2xl" />
+            {downloadedImagesCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                {downloadedImagesCount}
+              </span>
+            )}
           </Link>{" "}
           <Link to="/" className="hover:text-blue-600">
             Home
@@ -148,11 +156,20 @@ const Navbar = () => {
               <div className="text-black dark:text-white flex items-center gap-8">
                 <div className="flex items-center gap-3">
                   <Link to="/profile">
-                    <img
-                      src={profileImage}
-                      alt="Profile"
-                      className="w-14 h-14 rounded-full border-2 border-gray-400 object-cover"
-                    />
+                    <div className="flex items-center gap-3">
+                      <div className="w-14 h-14">
+                        {imageError ? (
+                          <FaUserCircle className="w-14 h-14 text-gray-400" />
+                        ) : (
+                          <img
+                            src={profileImage}
+                            alt="User profile"
+                            className="w-14 h-14 rounded-full border-white shadow-md object-cover"
+                            onError={() => setImageError(true)}
+                          />
+                        )}
+                      </div>
+                    </div>
                   </Link>
 
                   <span className="text-gray-700 dark:text-white font-semibold">
