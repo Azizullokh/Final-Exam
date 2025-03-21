@@ -20,7 +20,7 @@ const Login = () => {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            toast.success("✅ Login success!", {
+            toast.success("Login success!", {
               style: {
                   border: "1px solid #4CAF50",
                   padding: "10px",
