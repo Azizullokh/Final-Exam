@@ -5,7 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AuthLayout from "./MainLayout/AuthLayout"
 import { useEffect, useState } from "react";
 //pagelarim-----------------------------------------
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
