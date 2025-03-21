@@ -3,7 +3,7 @@ import axios from "axios";
 import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux"; 
 import { FiDownload } from "react-icons/fi";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart , FaHeart } from "react-icons/fa6";
 import { GoDownload } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 import { toggleLike } from "../reduxStore/LikedSlice";
@@ -49,7 +49,7 @@ const UnsplashImgs = () => {
   }, 500);
 
   return (
-    <div className="max-w-6xl mx-auto md:px-4 px-0 bg-gary-200 dark:bg-gray-900">
+    <div className="max-w-6xl mx-auto md:px-4 px-0 bg-gray-100 dark:bg-gray-900">
       <div className="mb-6 flex justify-end items-end">
         <div className="relative md:w-[45%] w-[100%]">
           <input
@@ -60,47 +60,52 @@ const UnsplashImgs = () => {
           />
           <FaSearch className="absolute right-4 top-4" />
         </div>
-      </div>
-      <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-3 md:gap-4 gap-2 md:space-y-4 space-y-2">
-        <div className="flex mx-auto items-center justify-center">
-            {
-                loading && <span className="loading loading-ring loading-xl"></span>
-            }
+      </div><div className="flex mx-auto items-center justify-center">
+            {loading && <span className="loading loading-ring loading-xl"></span>}
         </div>
-        {images.map((image) => (
-          <div
-            key={image.id}
-            className="relative break-inside-avoid overflow-hidden rounded-lg group"
-          >
-            <img
-              src={image.urls.small}
-              alt={image.alt_description}
-              className="w-full rounded-lg transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60">
-              <div className="absolute bottom-1 left-2 md:bottom-2 md:left-4 flex items-center gap-2 mb-2">
-                <img
-                  src={image.user.profile_image.small}
-                  alt={image.user.name}
-                  className="md:w-8 md:h-8 w-5 h-5 rounded-full"
-                />
-                <span className="text-white md:text-2xl text-[10px]">{image.user.name}</span>
-              </div>
-              <div className="absolute top-3 right-3 flex gap-2 justify-between">
-                <button className="text-white md:text-2xl text-xl" onClick={() => dispatch(toggleLike(image))}>
-                  <FaRegHeart />
-                </button>
-                <a
-                  href={image.links.download}
-                  target="_blank"
-                  className="text-white md:text-2xl text-xl"
-                >
-                  <FiDownload />
-                </a>
+      <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-3 md:gap-4 gap-2 md:space-y-4 space-y-2">
+        
+        {images.map((image) => {
+          const isLiked = likedImages.some((img) => img.id === image.id);
+
+          return (
+            <div
+              key={image.id}
+              className="relative break-inside-avoid overflow-hidden rounded-lg group"
+            >
+              <img
+                src={image.urls.small}
+                alt={image.alt_description}
+                className="w-full rounded-lg transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60">
+                <div className="absolute bottom-1 left-2 md:bottom-2 md:left-4 flex items-center gap-2 mb-2">
+                  <img
+                    src={image.user.profile_image.small}
+                    alt={image.user.name}
+                    className="md:w-8 md:h-8 w-5 h-5 rounded-full"
+                  />
+                  <span className="text-white md:text-2xl text-[10px]">{image.user.name}</span>
+                </div>
+                <div className="absolute top-3 right-3 flex gap-2 justify-between">
+                  <button
+                    className={`md:text-2xl text-xl ${isLiked ? "text-red-500" : "text-white"}`}
+                    onClick={() => dispatch(toggleLike(image))}
+                  >
+                    {isLiked ? <FaHeart /> : <FaRegHeart />}
+                  </button>
+                  <a
+                    href={image.links.download}
+                    target="_blank"
+                    className="text-white md:text-2xl text-xl"
+                  >
+                    <FiDownload />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="mt-6 flex justify-center">
         <button
