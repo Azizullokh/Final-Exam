@@ -3,11 +3,12 @@ import axios from "axios";
 import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { FiDownload } from "react-icons/fi";
-import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart, FaEye } from "react-icons/fa6";
 import { GoDownload } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 import { addImage } from "../reduxStore/downloadSlice";
 import { addLike } from "../reduxStore/LikedSlice";
+import { useNavigate } from "react-router-dom";
 
 const UnsplashImgs = () => {
   const [images, setImages] = useState([]);
@@ -18,6 +19,7 @@ const UnsplashImgs = () => {
   const dispatch = useDispatch();
   const likedImages = useSelector((state) => state.likes.likedImages);
   const downloadedImages = useSelector((state) => state.download.images);
+  const navigate = useNavigate()
 
   const fetchImages = async (searchQuery, pageNum) => {
     const accessKey = "BdNtKrF0I9Pg2gbNGzUBKQPnuT5r2Rr4F_2u8EbtI-0";
@@ -102,6 +104,12 @@ const UnsplashImgs = () => {
                   </span>
                 </div>
                 <div className="absolute top-3 right-3 flex gap-2 justify-between">
+                <button
+                    className="text-white md:text-2xl text-xl border-2 border-transparent hover:border-white p-1 rounded transition duration-300"
+                    onClick={() => navigate(`/details/${image.id}`)}
+                  >
+                    <FaEye />
+                  </button>
                   <button
                     className={`text-white md:text-2xl text-xl border-2 border-transparent hover:border-white p-1 rounded transition duration-300 ${
                       isLiked ? "text-red-500" : "text-white"
