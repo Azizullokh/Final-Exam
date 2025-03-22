@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useThemeStore } from "../store/darkmodeSlice";
+import { useApplyTheme, useThemeStore } from "../store/darkmodeSlice";
 import { Moon, Sun } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -10,7 +10,7 @@ const themes = [
 
 export default function DarkModeToggle() {
   const { theme, setTheme } = useThemeStore();
-
+  useApplyTheme();
   return (
     <div className="z-10">
       <DropdownMenu.Root>
