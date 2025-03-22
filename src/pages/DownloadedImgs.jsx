@@ -18,7 +18,7 @@ function DownloadedImgs() {
 
   return (
     <div className="px-4 max-w-6xl pt-25 flex mx-auto flex-col pb-10">
-      <h1 className="text-xl font-bold mb-4">Downloads ({downloadedImages.length})</h1>
+      <h1 className="text-2xl font-bold mb-4 text-black dark:text-white">Downloads ({downloadedImages.length})</h1>
       <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-3 md:gap-4 gap-2 md:space-y-4 space-y-2">
         {downloadedImages.map((image) => (
           <div key={image.id} className="relative break-inside-avoid overflow-hidden rounded-lg group">
