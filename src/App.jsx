@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { Toaster } from "react-hot-toast";
+import Details from "./pages/Details";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -108,6 +109,14 @@ const App = () => {
               </MainLayout>
             }
           />
+          <Route
+            path="/details/:id"
+            element={
+              <MainLayout>
+                <Details />
+              </MainLayout>
+            }
+          ></Route>
         </Route>
       </Routes>
     </Router>
