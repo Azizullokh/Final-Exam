@@ -7,16 +7,16 @@ const AuthNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md w-full z-10 fixed top-0 left-0">
+    <nav className="bg-white dark:bg-black shadow-md w-full z-10 fixed top-0 left-0">
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+        <div className="flex items-center gap-3 text-2xl font-bold text-gray-800 dark:text-white">
             <LogoSVG />
           <Link to="/">Deerly</Link>
         </div>
         <div className="hidden md:flex space-x-6">
           <Link
             to="/login"
-            className="px-5 py-2 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition duration-200"
+            className="px-5 py-2 border-2 dark:text-white dark:border-white border-black text-black rounded-lg hover:bg-black hover:text-white transition duration-200"
           >
             Login
           </Link>
