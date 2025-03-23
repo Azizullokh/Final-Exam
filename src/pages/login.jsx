@@ -96,7 +96,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={handleResetPassword}
-                                className="text-white hover:underline"
+                                className="text-white hover:underline cursor-pointer"
                             >
                                 Forgot Password?
                             </button>
@@ -104,7 +104,7 @@ const Login = () => {
                        
                         <button
                             type="submit"
-                            className="w-full bg-black bg-opacity-50 text-white py-3 mb-4 rounded-lg hover:bg-opacity-70 transition"
+                            className="w-full cursor-pointer bg-black bg-opacity-50 text-white py-3 mb-4 rounded-lg hover:bg-opacity-70 transition"
                         >
                             Login
                         </button>
@@ -114,7 +114,7 @@ const Login = () => {
                                 Don`t have an account?{" "}
                                 <button
                                     onClick={() => navigate("/register")}
-                                    className="text-blue-300 hover:underline"
+                                    className="text-blue-300 cursor-pointer hover:underline"
                                 >
                                     Sign Up
                                 </button>
