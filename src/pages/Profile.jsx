@@ -30,6 +30,15 @@ const ProfilePage = () => {
 
   const handleUpdateProfile = async () => {
     await updateUserProfile(displayName, profileImage);
+    toast.success("Updated Succesfully!", {
+      style: {
+        border: "1px solid #4CAF50",
+        padding: "10px",
+        color: "#4CAF50",
+        fontWeight: "bold",
+        background: "#f0fff0",
+      },
+    });
   };
 
   const handleSendVerifyEmail = async () => {
@@ -106,6 +115,15 @@ const ProfilePage = () => {
               />
             </div>
 
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+          </div>
+          <div className="flex items-center gap-4 flex-wrap md:flex-nowrap">
+            <button
+              onClick={handleUpdateProfile}
+              className="flex items-center gap-2 bg-black hover:bg-green-600 transition text-white p-2 rounded shadow duration-300 cursor-pointer"
+            >
+              <MdOutlineSystemUpdate /> Update Profile
+            </button>
             <div className="flex items-center justify-between">
               {user?.emailVerified ? (
                 <span className="text-green-500 font-semibold">
@@ -114,28 +132,19 @@ const ProfilePage = () => {
               ) : (
                 <button
                   onClick={handleSendVerifyEmail}
-                  className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2 transition text-white p-2 rounded shadow"
+                  className="bg-black hover:bg-blue-700 cursor-pointer flex items-center gap-2 text-white p-2 rounded shadow transition duration-300"
                 >
                   <MdEmail /> Verify Email
                 </button>
               )}
             </div>
-            {error && <p className="text-red-400 text-sm">{error}</p>}
+            <button
+              onClick={handleLogOut}
+              className="flex items-center gap-2 bg-red-500 hover:bg-red-600 transition text-white p-2 rounded shadow cursor-pointer"
+            >
+              <MdOutlineLogout /> Log Out
+            </button>
           </div>
-
-          <button
-            onClick={handleUpdateProfile}
-            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 transition text-white p-2 rounded w-full shadow"
-          >
-            <MdOutlineSystemUpdate /> Update Profile
-          </button>
-
-          <button
-            onClick={handleLogOut}
-            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 transition text-white p-2 rounded w-full shadow mt-2"
-          >
-            <MdOutlineLogout /> Log Out
-          </button>
         </div>
       </div>
     </div>
