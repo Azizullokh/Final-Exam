@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { MdOutlineSystemUpdate } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const ProfilePage = () => {
   const { user, updateUserProfile, logoutUser, profileImage } = useAuth();
@@ -34,7 +35,15 @@ const ProfilePage = () => {
   const handleSendVerifyEmail = async () => {
     try {
       await sendEmailVerification(auth.currentUser);
-      alert("Verify email sent!");
+      toast.success("Verify Email send!", {
+        style: {
+          border: "1px solid #4CAF50",
+          padding: "10px",
+          color: "#4CAF50",
+          fontWeight: "bold",
+          background: "#f0fff0",
+        },
+      });
     } catch (error) {
       setError(error.message);
     }
@@ -111,7 +120,6 @@ const ProfilePage = () => {
                 </button>
               )}
             </div>
-
             {error && <p className="text-red-400 text-sm">{error}</p>}
           </div>
 
