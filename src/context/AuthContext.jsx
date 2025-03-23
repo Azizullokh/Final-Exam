@@ -1,26 +1,38 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut,
+  signInWithPopup,
+  updateProfile,
+  signInWithRedirect,
+  browserSessionPersistence,
+  setPersistence,
+} from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 import { toast } from "react-hot-toast";
-
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
   const [loading, setLoading] = useState(true);
-  const [profileImage, setProfileImage] = useState(localStorage.getItem("profileImage") || "default-avatar.png");
-
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem("profileImage")
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        setUser({
-          uid: currentUser.uid,
+       const newUser = {
+        uid: currentUser.uid,
           email: currentUser.email,
           displayName: currentUser.displayName,
           photoURL: currentUser.photoURL,
-        });
+       }
+        setUser(newUser)
+        localStorage.setItem("user", JSON.stringify(newUser));
       } else {
         setUser(null);
       }
@@ -29,8 +41,6 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-
-  
   const loginUser = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -54,7 +64,7 @@ export const AuthProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      toast.error("Reset Password Error" ,error, {
+      toast.error("Reset Password Error", error, {
         style: {
           border: "1px solid rgb(227, 61, 61)",
           padding: "10px",
@@ -66,10 +76,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   const loginWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
+      await setPersistence(auth, browserSessionPersistence);
+      const result = await signInWithRedirect(auth, googleProvider);
       setUser(result.user);
       setProfileImage(result.user.photoURL);
       localStorage.setItem("profileImage", result.user.photoURL);
@@ -108,14 +118,26 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   const logoutUser = async () => {
     await signOut(auth);
-    setUser(null); 
+    setUser(null);
   };
-  
+
   return (
-    <AuthContext.Provider value={{ user , setUser , loading, loginUser, profileImage, resetPassword  , logoutUser  , loginWithGoogle , updateUserProfile}}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        loading,
+        loginUser,
+        profileImage,
+        resetPassword,
+        logoutUser,
+        loginWithGoogle,
+        updateUserProfile,
+        setPersistence
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
