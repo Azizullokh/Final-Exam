@@ -13,7 +13,7 @@ const downloadSlice = createSlice({
       if (!state.images.some((img) => img.id === action.payload.id)) {
         state.images.push(action.payload);
         localStorage.setItem("downloadedImages", JSON.stringify(state.images));
-        toast.success("✅ added to download!", {
+        toast.success("added to download!", {
           style: {
             border: "1px solid #4CAF50",
             padding: "10px",
