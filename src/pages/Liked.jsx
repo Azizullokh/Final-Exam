@@ -4,6 +4,7 @@ import { addImage } from "../reduxStore/downloadSlice";
 import { FiDownload } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Liked = () => {
   const likedImages = useSelector((state) => state.likes.likedImages);
@@ -26,7 +27,11 @@ const Liked = () => {
               (img) => img.id === image.id
             );
             return (
-              <div
+              <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.05 }}
                 key={image.id}
                 className="relative break-inside-avoid overflow-hidden rounded-lg group"
                 onMouseEnter={() => setHoveredImage(image.id)}
@@ -68,7 +73,7 @@ const Liked = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
