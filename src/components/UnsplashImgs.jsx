@@ -9,6 +9,7 @@ import { FaSearch } from "react-icons/fa";
 import { addImage } from "../reduxStore/downloadSlice";
 import { addLike } from "../reduxStore/LikedSlice";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const UnsplashImgs = () => {
   const [images, setImages] = useState([]);
@@ -56,15 +57,19 @@ const UnsplashImgs = () => {
   return (
     <div className="max-w-6xl mx-auto pb-10 px-4 bg-gray-100 dark:bg-gray-900">
       <div className="mb-6 flex justify-end items-end">
-        <div className="relative md:w-[45%] w-[100%]">
+        <motion.div 
+         initial={{ opacity: 0, x: 30 }}
+         animate={{ opacity: 1, x: 0 }}
+         transition={{ duration: 0.5, delay: 0.1 }}
+        className="relative md:w-[45%] w-[100%]">
           <input
             type="text"
             placeholder="Search images..."
-            className="p-3 border-2 dark:border-white border-black rounded-md w-full max-w-lg"
+            className="p-3 shadow-2xl border-2 dark:border-white border-gray-400 rounded-md w-full max-w-lg"
             onChange={(e) => handleSearch(e.target.value)}
           />
-          <FaSearch className="absolute right-4 top-4" />
-        </div>
+          <FaSearch className="absolute right-4 top-4 text-gray-400" />
+        </motion.div>
       </div>
       <div className="flex mx-auto items-center justify-center">
         {loading && <span className="loading loading-ring loading-xl"></span>}
@@ -76,7 +81,11 @@ const UnsplashImgs = () => {
             (img) => img.id === image.id
           );
           return (
-            <div
+            <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.05 }}
               key={image.id}
               className="relative break-inside-avoid overflow-hidden rounded-lg group"
               onMouseEnter={() => setHoveredImage(image.id)}
@@ -128,7 +137,7 @@ const UnsplashImgs = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
