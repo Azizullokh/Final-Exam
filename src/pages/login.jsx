@@ -13,7 +13,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const { user , resetPassword } = useAuth();
+    const {resetPassword } = useAuth();
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -37,7 +37,7 @@ const Login = () => {
 
     const handleResetPassword = async () => {
       if (!email) {
-          toast.error("❌ Please Enter Email!", {
+          toast.error("Please Enter Email!", {
               style: {
                   border: "1px solid #FF0000",
                   padding: "10px",
@@ -49,15 +49,6 @@ const Login = () => {
           return;
       }
       await resetPassword(email);
-      toast.success("📧 Parolni tiklash uchun email yuborildi!", {
-          style: {
-              border: "1px solid #4CAF50",
-              padding: "10px",
-              color: "#4CAF50",
-              fontWeight: "bold",
-              background: "#f0fff0",
-          },
-      });
   };
 
     return (
@@ -120,7 +111,7 @@ const Login = () => {
                         <GoogleLogin /> 
                         <div className="text-center mt-2">
                             <p className="text-white">
-                                Don't have an account?{" "}
+                                Don`t have an account?{" "}
                                 <button
                                     onClick={() => navigate("/register")}
                                     className="text-blue-300 hover:underline"
