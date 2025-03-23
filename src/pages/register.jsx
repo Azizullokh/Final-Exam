@@ -101,7 +101,7 @@ const Register = () => {
                     {error && <p className="text-red-400 mb-4">{error}</p>}
                     <button
                         type="submit"
-                        className="w-full bg-black bg-opacity-50 text-white py-3 mb-4 rounded-lg hover:bg-opacity-70 transition"
+                        className="w-full cursor-pointer bg-black bg-opacity-50 text-white py-3 mb-4 rounded-lg hover:bg-opacity-70 transition"
                     >
                         Sign Up
                     </button>
@@ -111,7 +111,7 @@ const Register = () => {
                             Already have an account?{" "}
                             <button
                                 onClick={() => navigate("/login")}
-                                className="text-blue-300 hover:underline"
+                                className="text-blue-300 hover:underline cursor-pointer"
                             >
                                 Login
                             </button>
