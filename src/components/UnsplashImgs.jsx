@@ -28,7 +28,7 @@ const UnsplashImgs = () => {
 
     const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
       finalQuery
-    )}&client_id=${accessKey}&per_page=15&page=${pageNum}&orientation=landscape`;
+    )}&client_id=${accessKey}&per_page=30&page=${pageNum}&orientation=landscape`;
 
     try {
       setLoading(true);
@@ -65,7 +65,7 @@ const UnsplashImgs = () => {
           <input
             type="text"
             placeholder="Search images..."
-            className="p-3 shadow-2xl border-2 dark:border-white border-gray-400 rounded-md w-full max-w-lg"
+            className="p-3 shadow-2xl border-2 dark:border-white border-gray-400 rounded-md w-full max-w-lg outline-none"
             onChange={(e) => handleSearch(e.target.value)}
           />
           <FaSearch className="absolute right-4 top-4 text-gray-400" />
