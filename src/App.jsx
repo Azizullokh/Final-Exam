@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainLayout from "./MainLayout/MainLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AuthLayout from "./MainLayout/AuthLayout";
-import { useEffect, useState } from "react";
-//pagelarim-----------------------------------------
+import { Toaster } from "react-hot-toast";
+import { useAuth } from "./context/AuthContext";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/Home";
@@ -12,25 +12,10 @@ import Liked from "./pages/Liked";
 import DownloadedImgs from "./pages/DownloadedImgs";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-import { Toaster } from "react-hot-toast";
 import Details from "./pages/Details";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-    return unsubscribe;
-  }, []);
-
+  const { user } = useAuth();
   return (
     <Router>
       <Toaster position="top-right" reverseOrder={false} />
@@ -52,6 +37,7 @@ const App = () => {
             </AuthLayout>
           }
         />
+
         <Route element={<ProtectedRoute />}>
           <Route
             path="/"
@@ -81,7 +67,7 @@ const App = () => {
             path="/liked"
             element={
               <MainLayout>
-                <Liked></Liked>
+                <Liked />
               </MainLayout>
             }
           />
@@ -89,7 +75,7 @@ const App = () => {
             path="/downloaded"
             element={
               <MainLayout>
-                <DownloadedImgs></DownloadedImgs>
+                <DownloadedImgs />
               </MainLayout>
             }
           />
@@ -116,7 +102,7 @@ const App = () => {
                 <Details />
               </MainLayout>
             }
-          ></Route>
+          />
         </Route>
       </Routes>
     </Router>
