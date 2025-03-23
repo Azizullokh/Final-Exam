@@ -4,13 +4,10 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
   signOut,
-  signInWithPopup,
   updateProfile,
-  signInWithRedirect,
-  browserSessionPersistence,
   setPersistence,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase";
+import { auth } from "../firebase";
 import { toast } from "react-hot-toast";
 
 const AuthContext = createContext();
@@ -35,6 +32,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(newUser));
       } else {
         setUser(null);
+        localStorage.removeItem("user")
       }
       setLoading(false);
     });
@@ -76,26 +74,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginWithGoogle = async () => {
-    try {
-      await setPersistence(auth, browserSessionPersistence);
-      const result = await signInWithRedirect(auth, googleProvider);
-      setUser(result.user);
-      setProfileImage(result.user.photoURL);
-      localStorage.setItem("profileImage", result.user.photoURL);
-    } catch (error) {
-      toast.success(error, {
-        style: {
-          border: "1px solid rgb(227, 61, 61)",
-          padding: "10px",
-          color: "red",
-          fontWeight: "bold",
-          background: "rgb(248, 196, 196)",
-        },
-      });
-    }
-  };
-
   const updateUserProfile = async (newDisplayName, newPhotoURL) => {
     try {
       if (!auth.currentUser) return;
@@ -121,6 +99,7 @@ export const AuthProvider = ({ children }) => {
   const logoutUser = async () => {
     await signOut(auth);
     setUser(null);
+    localStorage.removeItem("user" , "profileImage");
   };
 
   return (
@@ -133,7 +112,6 @@ export const AuthProvider = ({ children }) => {
         profileImage,
         resetPassword,
         logoutUser,
-        loginWithGoogle,
         updateUserProfile,
         setPersistence
       }}
