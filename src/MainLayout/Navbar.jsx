@@ -158,12 +158,12 @@ const Navbar = () => {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden absolute top-18 left-0 w-[60%] bg-white dark:bg-gray-950 shadow-lg z-40">
+        <div className="md:hidden absolute top-18 right-0 w-[60%] bg-white dark:bg-gray-950 shadow-lg z-40">
           <div className="flex flex-col items-start py-4 px-5 space-y-4">
             {user && (
               <div className="text-black dark:text-white flex items-center gap-8">
                 <div className="flex items-center gap-3">
-                  <Link to="/profile">
+                  <Link to="/profile" onClick={() => setMenuOpen(false)}>
                     <div className="flex items-center gap-3">
                       <div className="w-14 h-14">
                         {imageError ? (
