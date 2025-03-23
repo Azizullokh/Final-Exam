@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <motion.div
-      initial={{ x: "100vw" }}
+      initial={{ x: "10%" }}
       animate={{ x: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="pt-35 max-w-6xl mx-auto px-6 py-12 bg-gray-100 dark:bg-gray-900"
     >
       <motion.h1
