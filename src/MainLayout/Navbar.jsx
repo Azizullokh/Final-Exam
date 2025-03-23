@@ -191,7 +191,7 @@ const Navbar = () => {
             </div>
             <Link
               to="/"
-              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2 transition duration-300"
               onClick={() => setMenuOpen(false)}
             >
               <FaHome /> Home
@@ -199,14 +199,14 @@ const Navbar = () => {
 
             <Link
               to="/about"
-              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2 transition duration-300"
               onClick={() => setMenuOpen(false)}
             >
               <FcAbout /> About
             </Link>
             <Link
               to="/contact"
-              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-white hover:text-blue-600 flex items-center gap-2 transition duration-300"
               onClick={() => setMenuOpen(false)}
             >
               <MdConnectWithoutContact />
