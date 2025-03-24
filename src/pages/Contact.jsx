@@ -7,7 +7,7 @@ const Contact = () => {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="max-w-3xl mx-auto pt-35 py-12 bg-gray-100 flex flex-col items-center dark:bg-gray-900"
+      className="max-w-3xl mx-auto pt-35 px-4 justify-center py-12 bg-gray-100 flex flex-col items-center dark:bg-gray-900"
     >
       <motion.h1
         initial={{ opacity: 0, scale: 0.8 }}
