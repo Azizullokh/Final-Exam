@@ -13,7 +13,7 @@ const Liked = () => {
   const downloadedImages = useSelector((state) => state.download.images);
 
   return (
-    <div className="pt-20 pb-10 px-4 max-w-6xl mx-auto md:px-4 px-0 bg-gray-100 dark:bg-gray-900">
+    <div className="pt-20 pb-10 px-4 max-w-6xl mx-auto md:px-4 bg-gray-100 dark:bg-gray-900">
       <h2 className="text-black dark:text-white text-2xl font-bold my-6">
       Liked Images ({likedImages.length})
       </h2>
