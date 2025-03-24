@@ -32,7 +32,7 @@ const downloadSlice = createSlice({
           border: "1px solid rgb(227, 61, 61)",
           padding: "10px",
           color: "red",
-          fontWeight: "bold",
+          fontWeight: "rgb(227, 61, 61)",
           background: "#f0fff0",
         },
       });
