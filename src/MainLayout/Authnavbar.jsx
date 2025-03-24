@@ -35,17 +35,17 @@ const AuthNavbar = () => {
         </button>
       </div>
       {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-white shadow-md py-4 flex flex-col items-center space-y-4">
+        <div className="md:hidden absolute top-20 right-0 w-[50%] bg-white dark:bg-black shadow-md py-4 flex flex-col items-center space-y-4">
           <Link
             to="/login"
-            className="text-gray-700 hover:text-blue-600 transition duration-200"
+            className="text-gray-700 hover:text-blue-600 transition duration-200 dark:text-white"
             onClick={() => setMenuOpen(false)}
           >
             Login
           </Link>
           <Link
             to="/register"
-            className="text-gray-700 hover:text-blue-600 transition duration-200"
+            className="text-gray-700 hover:text-blue-600 transition duration-200 dark:text-white"
             onClick={() => setMenuOpen(false)}
           >
             Sign Up
