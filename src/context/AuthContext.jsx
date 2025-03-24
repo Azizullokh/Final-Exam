@@ -30,6 +30,10 @@ export const AuthProvider = ({ children }) => {
        }
         setUser(newUser)
         localStorage.setItem("user", JSON.stringify(newUser));
+        if (currentUser.photoURL) {
+          setProfileImage(currentUser.photoURL);
+          localStorage.setItem("profileImage", currentUser.photoURL);
+        }
       } else {
         setUser(null);
         localStorage.removeItem("user")
@@ -99,7 +103,8 @@ export const AuthProvider = ({ children }) => {
   const logoutUser = async () => {
     await signOut(auth);
     setUser(null);
-    localStorage.removeItem("user" , "profileImage");
+    localStorage.removeItem("user");
+    localStorage.removeItem("profileImage");
   };
 
   return (
